@@ -26,7 +26,7 @@ public class SpotHandler {
 		TreeMap<Double,Spot> sorting = new TreeMap<Double,Spot>();
 		double dist;
 		for(int i=0;i<spots.size();i++) {
-			if((spots.get(i).getX()<xcoord+distance)&&(spots.get(i).getX()>xcoord-distance)&&(spots.get(i).getY()<ycoord+distance)&&(spots.get(i).getY()>ycoord-distance)) {
+			if((spots.get(i).getX()<xcoord+distance)&&(spots.get(i).getX()>xcoord-distance)&&(spots.get(i).getY()<ycoord+distance)&&(spots.get(i).getY()>ycoord-distance)&&!spots.get(i).getStatus) {
 				spots.get(i).printInfo();
 				dist= Math.sqrt(Math.pow(spots.get(i).getX(),2)+Math.pow(spots.get(i).getY(),2));
 				sorting.put(dist,spots.get(i));
