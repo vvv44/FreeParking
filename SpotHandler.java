@@ -21,11 +21,25 @@ public class SpotHandler {
 			}
 		}
 	}
-	public static void spotSearch(double xcoord,double ycoord,double distance) {
+	public static ArrayList<Spot> spotSearch(double xcoord,double ycoord,double distance) {
+		ArrayList<Spot> listing = new ArrayList<Spot>();
+		TreeMap<Double,Spot> sorting = new TreeMap<Double,Spot>();
+		double dist;
 		for(int i=0;i<spots.size();i++) {
 			if((spots.get(i).getX()<xcoord+distance)&&(spots.get(i).getX()>xcoord-distance)&&(spots.get(i).getY()<ycoord+distance)&&(spots.get(i).getY()>ycoord-distance)) {
 				spots.get(i).printInfo();
+				dist= Math.sqrt(Math.pow(spots.get(i).getX(),2)+Math.pow(spots.get(i).getY(),2));
+				sorting.put(dist,spots.get(i));
 			}
 		}
+		System.out.println();
+		while(!sorting.isEmpty()) {
+			listing.add(sorting.get(sorting.firstKey()));
+			sorting.remove(sorting.firstKey());
+		}
+		for(int i=0;i<spots.size();i++) {
+			listing.get(i).printInfo();
+		}
+		return listing;
 	}
 }
